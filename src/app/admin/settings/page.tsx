@@ -48,6 +48,7 @@ export default function SettingsPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
   const [saveStatus, setSaveStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
   const [newSkill, setNewSkill] = useState({ name: '', level: 50 })
   const [newTech, setNewTech] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -76,6 +77,9 @@ export default function SettingsPage() {
     
     setIsSaving(true)
     setSaveStatus('idle')
+    setErrorMessage('')
+    
+    console.log('Saving settings:', settings)
     
     try {
       const response = await fetch('/api/settings', {
@@ -86,6 +90,8 @@ export default function SettingsPage() {
       
       const result = await response.json()
       
+      console.log('Save response:', result)
+      
       if (result.success) {
         // Reload settings from server to ensure we have the latest data
         await loadSettings()
@@ -93,11 +99,13 @@ export default function SettingsPage() {
         setTimeout(() => setSaveStatus('idle'), 3000)
       } else {
         setSaveStatus('error')
+        setErrorMessage(result.error || 'Failed to save settings')
         console.error('Error saving settings:', result.error)
       }
     } catch (error) {
       console.error('Error saving settings:', error)
       setSaveStatus('error')
+      setErrorMessage('Network error: Failed to save settings')
     } finally {
       setIsSaving(false)
     }
@@ -162,8 +170,11 @@ export default function SettingsPage() {
     formData.append('type', 'profile')
 
     setIsSaving(true)
+    setSaveStatus('idle')
+    setErrorMessage('')
 
     try {
+      console.log('Uploading image...')
       const response = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
@@ -171,9 +182,13 @@ export default function SettingsPage() {
       
       const result = await response.json()
       
+      console.log('Upload response:', result)
+      
       if (result.success) {
         // Update settings with new image URL
         const updatedSettings = { ...settings, profileImage: result.url }
+        
+        console.log('Saving updated settings with new image...')
         
         // Save to database immediately
         const saveResponse = await fetch('/api/settings', {
@@ -184,15 +199,24 @@ export default function SettingsPage() {
         
         const saveResult = await saveResponse.json()
         
+        console.log('Save result:', saveResult)
+        
         if (saveResult.success) {
-          setSettings(updatedSettings)
+          await loadSettings()
           setSaveStatus('success')
           setTimeout(() => setSaveStatus('idle'), 3000)
+        } else {
+          setSaveStatus('error')
+          setErrorMessage(saveResult.error || 'Failed to save image')
         }
+      } else {
+        setSaveStatus('error')
+        setErrorMessage(result.error || 'Failed to upload image')
       }
     } catch (error) {
       console.error('Error uploading image:', error)
       setSaveStatus('error')
+      setErrorMessage('Failed to upload image')
     } finally {
       setIsSaving(false)
     }
@@ -255,6 +279,17 @@ export default function SettingsPage() {
             className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg"
           >
             <p className="text-green-800 dark:text-green-200">Settings saved successfully!</p>
+          </motion.div>
+        )}
+        
+        {saveStatus === 'error' && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
+          >
+            <p className="text-red-800 dark:text-red-200 font-semibold">Failed to save settings</p>
+            {errorMessage && <p className="text-red-700 dark:text-red-300 text-sm mt-1">{errorMessage}</p>}
           </motion.div>
         )}
 

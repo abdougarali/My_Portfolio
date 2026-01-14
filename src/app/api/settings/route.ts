@@ -87,19 +87,25 @@ export async function PUT(request: NextRequest) {
     await dbConnect()
     
     const body = await request.json()
+    
+    console.log('Received settings update:', JSON.stringify(body, null, 2))
 
     // Find existing settings or create new
     let settings = await Settings.findOne()
     
     if (!settings) {
+      console.log('Creating new settings document')
       settings = await Settings.create({ ...defaultSettings, ...body })
     } else {
-      // Update settings
-      Object.assign(settings, body)
+      console.log('Updating existing settings document')
+      // Update settings using set to ensure proper type handling
+      settings.set(body)
       await settings.save()
     }
 
-    return NextResponse.json({ 
+    console.log('Settings saved successfully:', settings._id)
+
+    const response = { 
       success: true, 
       data: {
         id: settings._id.toString(),
@@ -117,9 +123,14 @@ export async function PUT(request: NextRequest) {
         skills: settings.skills,
         technologies: settings.technologies,
       }
-    })
+    }
+    
+    console.log('Returning response:', JSON.stringify(response, null, 2))
+    
+    return NextResponse.json(response)
   } catch (error: any) {
     console.error('Error updating settings:', error)
+    console.error('Error stack:', error.stack)
     
     if (error.name === 'ValidationError') {
       const messages = Object.values(error.errors).map((err: any) => err.message)
@@ -130,7 +141,7 @@ export async function PUT(request: NextRequest) {
     }
     
     return NextResponse.json(
-      { success: false, error: 'Failed to update settings' }, 
+      { success: false, error: 'Failed to update settings', details: error.message }, 
       { status: 500 }
     )
   }
