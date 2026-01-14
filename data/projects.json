@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1734567890123",
+    "slug": "landing-page",
+    "title": "Landing Page",
+    "summary": "A stunning landing page that converts visitors into clients. Fast, responsive, and optimized for SEO. Perfect for startups, SaaS, or agencies.",
+    "date": "2024-12-19",
+    "stack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
+    "category": "Web Development",
+    "featured": true,
+    "liveUrl": "http://localhost:3001",
+    "githubUrl": "https://github.com/yourusername/landing-page-project",
+    "image": "/images/projects/project-1760535200081.jpg",
+    "tags": [
+      "Frontend",
+      "Website Design",
+      "Business",
+      "Responsive",
+      "HTML",
+      "CSS"
+    ],
+    "content": "# Landing Page Project\n\nA modern, conversion-optimized landing page built with Next.js, TypeScript, and Tailwind CSS. This project demonstrates my ability to create professional, high-converting landing pages that help businesses grow.\n\n## 🚀 What I Built\n\n- **Modern Design**: Clean, professional design optimized for conversions\n- **Responsive Layout**: Mobile-first design that works perfectly on all devices\n- **Fast Performance**: Built with Next.js for optimal speed and SEO\n- **TypeScript**: Type-safe development with excellent developer experience\n- **Tailwind CSS**: Utility-first CSS framework for rapid styling\n\n## 🛠️ Technical Implementation\n\n- **Framework**: Next.js 14 with App Router\n- **Language**: TypeScript for type safety\n- **Styling**: Tailwind CSS for rapid development\n- **Icons**: Lucide React for consistent iconography\n- **Deployment**: Vercel-ready with optimized configuration\n\n## 📈 Key Features\n\n### Performance Optimizations\n- **Lighthouse Score**: 95+ across all metrics\n- **Core Web Vitals**: Excellent scores\n- **SEO**: Optimized meta tags and structure\n- **Accessibility**: WCAG AA compliant\n\n### Conversion Optimization\n- Clear value proposition\n- Prominent call-to-action buttons\n- Social proof and testimonials\n- Trust indicators and security badges\n- Mobile-optimized experience\n- Fast loading times\n\n## 🎯 Results\n\nThis landing page template is designed to:\n- **Increase Conversions**: Optimized layout and CTAs\n- **Improve Performance**: Fast loading and smooth interactions\n- **Enhance SEO**: Proper meta tags and structured data\n- **Boost Engagement**: Beautiful design and animations\n\n## 🚀 Deployment\n\nThe project is ready for deployment to Vercel with:\n- Automatic HTTPS\n- Global CDN\n- Image optimization\n- Analytics integration\n\nPerfect for startups, SaaS companies, or any business looking to create a professional online presence!",
+    "createdAt": "2024-12-19T10:00:00.000Z",
+    "updatedAt": "2025-10-15T13:38:38.951Z"
+  }
+]

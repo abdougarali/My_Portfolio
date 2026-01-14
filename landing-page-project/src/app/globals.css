@@ -1,0 +1,1058 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+  
+  body {
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-color: #ffffff;
+    color: #111827;
+  }
+  
+  * {
+    box-sizing: border-box;
+    border-color: #e5e7eb;
+}
+
+/* Custom Dark Mode Styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: #111827 !important;
+  color: #f9fafb !important;
+}
+
+.dark .bg-white {
+  background-color: #111827 !important;
+}
+
+/* Security & Trust Section - Certifications Card */
+.dark section .bg-white.rounded-2xl {
+  background-color: #1f2937 !important;
+}
+
+/* Force specific card background in dark mode */
+.dark #certifications-card {
+  background-color: rgba(31, 41, 55, 0.9) !important;
+}
+
+/* Force Money-Back Guarantee card background in dark mode */
+.dark #certifications-card .bg-gradient-to-r {
+  background: linear-gradient(to right, rgba(31, 41, 55, 0.8), rgba(55, 65, 81, 0.8)) !important;
+  border-color: rgba(75, 85, 99, 0.5) !important;
+}
+
+/* Force Money-Back Guarantee card by ID */
+.dark #money-back-guarantee {
+  background: linear-gradient(to right, rgba(31, 41, 55, 0.8), rgba(55, 65, 81, 0.8)) !important;
+  border-color: rgba(75, 85, 99, 0.5) !important;
+}
+
+/* Force Trust Badges cards background in dark mode */
+.dark #certifications-card .grid .motion-div {
+  background-color: rgba(55, 65, 81, 0.8) !important;
+  border-color: rgba(75, 85, 99, 0.5) !important;
+}
+
+/* Force all certification badge cards with creative gradients */
+.dark #certifications-card [class*="bg-blue-50"],
+.dark #certifications-card [class*="bg-green-50"],
+.dark #certifications-card [class*="bg-purple-50"],
+.dark #certifications-card [class*="bg-orange-50"] {
+  background: linear-gradient(135deg, rgba(31, 41, 55, 0.9), rgba(17, 24, 39, 0.2), rgba(31, 41, 55, 0.9)) !important;
+  border-color: rgba(75, 85, 99, 0.5) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Force Trust Badges in Hero section with creative gradients */
+.dark section [class*="bg-blue-50"],
+.dark section [class*="bg-green-50"],
+.dark section [class*="bg-purple-50"],
+.dark section [class*="bg-orange-50"] {
+  background: linear-gradient(135deg, rgba(31, 41, 55, 0.9), rgba(17, 24, 39, 0.2), rgba(31, 41, 55, 0.9)) !important;
+  border-color: rgba(75, 85, 99, 0.5) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #1f2937 !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: #374151 !important;
+}
+
+.dark .text-gray-900 {
+  color: #f9fafb !important;
+}
+
+.dark .text-gray-600 {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.dark .text-gray-400 {
+  color: #6b7280 !important;
+}
+
+.dark .border-gray-200 {
+  border-color: #374151 !important;
+}
+
+.dark .border-gray-300 {
+  border-color: #4b5563 !important;
+}
+
+.dark .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark .bg-blue-500 {
+  background-color: #dc2626 !important;
+}
+
+/* Hero Section Dark Mode */
+.dark .bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #111827, #1f2937, #111827) !important;
+}
+
+.dark .from-gray-50 {
+  background-color: #111827 !important;
+}
+
+.dark .via-white {
+  background-color: #1f2937 !important;
+}
+
+.dark .to-gray-50 {
+  background-color: #111827 !important;
+}
+
+.dark .bg-blue-100 {
+  background-color: rgba(30, 58, 138, 0.3) !important;
+}
+
+.dark .bg-indigo-100 {
+  background-color: rgba(67, 56, 202, 0.3) !important;
+}
+
+/* Hero Section Text Colors */
+.dark .text-gray-900 {
+  color: #f9fafb !important;
+}
+
+.dark .text-gray-600 {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+.dark .text-gray-400 {
+  color: #6b7280 !important;
+}
+
+.dark .text-blue-700 {
+  color: #60a5fa !important;
+}
+
+.dark .text-blue-300 {
+  color: #93c5fd !important;
+}
+
+/* Hero Section Border Colors */
+.dark .border-blue-200 {
+  border-color: #1e40af !important;
+}
+
+.dark .border-blue-800 {
+  border-color: #1e3a8a !important;
+}
+
+/* Navbar Text Colors in Dark Mode */
+.dark nav .text-gray-700 {
+  color: #ffffff !important;
+}
+
+.dark nav .text-gray-900 {
+  color: #ffffff !important;
+}
+
+/* FAQ Hover in Dark Mode */
+.dark button:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Comparison Table Dark Mode - Force Override ALL white backgrounds */
+
+/* Make ALL text white in comparison table */
+.dark #comparison span,
+.dark #comparison h3,
+.dark #comparison h4 {
+  color: #ffffff !important;
+}
+
+/* Row hover background in dark mode - Only Pro column (3rd column) visible */
+.dark #comparison .group:hover > div:nth-child(3) {
+  background-color: rgba(55, 65, 81, 0.6) !important;
+}
+
+.dark #comparison .group:hover > div:not(:nth-child(3)) {
+  background-color: rgba(31, 41, 55, 0.15) !important;
+}
+
+/* Category Headers like "Core Features", "Automation & AI" */
+.dark #comparison div[class*="bg-gradient-to-r"][class*="from-gray-100"] {
+  background: linear-gradient(to right, rgba(31, 41, 55, 0.5), rgba(17, 24, 39, 0.5)) !important;
+}
+
+.dark #comparison div[class*="bg-white"] {
+  background-color: rgba(17, 24, 39, 0.6) !important;
+}
+
+.dark #comparison div[class*="bg-gray-50"] {
+  background-color: rgba(31, 41, 55, 0.4) !important;
+}
+
+.dark #comparison div[class*="bg-gray-100"] {
+  background-color: rgba(31, 41, 55, 0.5) !important;
+}
+
+.dark #comparison div[class*="bg-blue-50"] {
+  background-color: rgba(31, 41, 55, 0.35) !important;
+}
+
+.dark #comparison div[class*="bg-blue-100"] {
+  background-color: rgba(31, 41, 55, 0.5) !important;
+}
+
+/* Keep Pro header blue */
+.dark #comparison div.bg-blue-600 {
+  background-color: #2563eb !important;
+}
+
+/* Customer Success Stories - Force White Text in Dark Mode */
+.dark section p.text-gray-700 {
+  color: #ffffff !important;
+}
+
+.dark section h4.text-gray-900 {
+  color: #ffffff !important;
+}
+
+.dark section span.text-gray-700 {
+  color: #ffffff !important;
+}
+
+.dark section span.text-gray-900 {
+  color: #ffffff !important;
+}
+
+.dark section span.text-gray-600 {
+  color: #ffffff !important;
+}
+
+/* More specific overrides for Customer Success Stories */
+.dark section .text-gray-700 {
+  color: #ffffff !important;
+}
+
+.dark section .text-gray-900 {
+  color: #ffffff !important;
+}
+
+.dark section .text-gray-600 {
+  color: #ffffff !important;
+}
+
+/* Force all text in Customer Success Stories to be white in dark mode */
+.dark section[class*="Customer"] p,
+.dark section[class*="Customer"] h4,
+.dark section[class*="Customer"] span {
+  color: #ffffff !important;
+}
+
+/* Target Customer Success Stories section specifically by ID */
+.dark #customer-success-stories p,
+.dark #customer-success-stories h4,
+.dark #customer-success-stories span,
+.dark #customer-success-stories .text-gray-700,
+.dark #customer-success-stories .text-gray-900,
+.dark #customer-success-stories .text-gray-600 {
+  color: #ffffff !important;
+}
+
+/* Keep company names blue in light mode, white in dark mode */
+#customer-success-stories .text-blue-600 {
+  color: #2563eb !important;
+}
+
+.dark #customer-success-stories .text-blue-600 {
+  color: #ffffff !important;
+}
+
+/* Preserve avatar gradient colors in dark mode */
+.dark #customer-success-stories .bg-gradient-to-br {
+  background: inherit !important;
+}
+
+/* Keep avatar icons with original gradient colors */
+.dark #customer-success-stories .rounded-full.bg-gradient-to-br.from-blue-500 {
+  background: linear-gradient(to bottom right, #3b82f6, #2563eb) !important;
+}
+
+.dark #customer-success-stories .rounded-full.bg-gradient-to-br.from-green-500 {
+  background: linear-gradient(to bottom right, #22c55e, #16a34a) !important;
+}
+
+.dark #customer-success-stories .rounded-full.bg-gradient-to-br.from-purple-500 {
+  background: linear-gradient(to bottom right, #a855f7, #9333ea) !important;
+}
+
+/* Keep metrics icons (Clock, Dollar, Users) with original gradient colors */
+.dark #customer-success-stories .rounded-lg.bg-gradient-to-br.from-blue-500 {
+  background: linear-gradient(to bottom right, #3b82f6, #2563eb) !important;
+}
+
+.dark #customer-success-stories .rounded-lg.bg-gradient-to-br.from-green-500 {
+  background: linear-gradient(to bottom right, #22c55e, #16a34a) !important;
+}
+
+.dark #customer-success-stories .rounded-lg.bg-gradient-to-br.from-purple-500 {
+  background: linear-gradient(to bottom right, #a855f7, #9333ea) !important;
+}
+
+/* Success Stories CTA Card - Professional Dark Mode Background */
+.dark #success-stories-cta {
+  background: linear-gradient(to right, rgba(31, 41, 55, 0.9), rgba(31, 41, 55, 0.8), rgba(55, 65, 81, 0.9)) !important;
+  border-color: rgba(75, 85, 99, 0.5) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Case Studies Section - Dark Mode Backgrounds */
+/* Bottom CTA Card */
+.dark section .bg-gradient-to-r.from-blue-50 {
+  background: linear-gradient(to right, rgba(31, 41, 55, 0.9), rgba(31, 41, 55, 0.8), rgba(55, 65, 81, 0.9)) !important;
+  border-color: rgba(75, 85, 99, 0.5) !important;
+}
+
+/* Testimonial Cards */
+.dark section .bg-gray-100 {
+  background-color: rgba(31, 41, 55, 0.8) !important;
+}
+
+/* All buttons default dark */
+.dark #comparison button[class*="bg-white"] {
+  background-color: rgba(31, 41, 55, 0.8) !important;
+  color: #60a5fa !important;
+}
+
+.dark #comparison button[class*="bg-gray"] {
+  background-color: rgba(31, 41, 55, 0.6) !important;
+}
+
+/* Blue buttons stay blue */
+.dark #comparison button[class*="bg-blue-600"] {
+  background-color: #2563eb !important;
+  color: white !important;
+}
+
+/* Button hovers */
+.dark #comparison button[class*="bg-white"]:hover,
+.dark #comparison button[class*="bg-gray"]:hover {
+  background-color: rgba(55, 65, 81, 0.7) !important;
+}
+
+.dark #comparison button[class*="bg-blue-600"]:hover {
+  background-color: #1d4ed8 !important;
+}
+
+  /* Responsive font scaling */
+  @media (max-width: 475px) {
+    html {
+      font-size: 13px;
+    }
+  }
+
+  @media (min-width: 475px) and (max-width: 640px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
+  /* Mobile-specific optimizations */
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .section-padding {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  /* Touch-friendly interactions */
+  @media (hover: none) and (pointer: coarse) {
+    .hover\:scale-105:hover {
+      transform: none;
+    }
+    
+    .hover\:shadow-xl:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .text-gray-600 {
+      color: #000000;
+    }
+    
+    .border-gray-200 {
+      border-color: #000000;
+    }
+  }
+
+  /* Screen reader only content */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Focus visible styles for better accessibility */
+  .focus-visible:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  /* Dark mode focus styles */
+  .dark .focus-visible:focus {
+    outline: 2px solid #60a5fa;
+    outline-offset: 2px;
+  }
+
+  /* Skip link for keyboard navigation */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #3b82f6;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+    transition: all 0.2s ease;
+  }
+
+  .skip-link:focus {
+    top: 6px;
+  }
+
+  /* Dark mode skip link */
+  .dark .skip-link {
+    background: #60a5fa;
+  }
+}
+
+@layer components {
+  /* Responsive container with better mobile padding */
+  .container {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .container {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+
+  /* Mobile-first section padding */
+  .section-padding {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-padding {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .section-padding {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
+
+  /* Responsive text gradient */
+  .text-gradient {
+    background: linear-gradient(to right, #2563eb, #0ea5e9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Enhanced card shadows with mobile optimization */
+  .card-shadow {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+  .card-shadow:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Mobile-optimized buttons */
+  .btn-primary {
+    background-color: #2563eb;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    outline: none;
+    border: none;
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-primary:hover {
+    background-color: #1d4ed8;
+  }
+
+  .btn-primary:focus {
+    box-shadow: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.5);
+  }
+
+  @media (min-width: 640px) {
+    .btn-primary {
+      padding: 1rem 2rem;
+    }
+  }
+  
+  .btn-secondary {
+    background-color: white;
+    color: #2563eb;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #bfdbfe;
+    transition: all 0.2s ease;
+    outline: none;
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-secondary:hover {
+    background-color: #f9fafb;
+  }
+
+  .btn-secondary:focus {
+    box-shadow: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.5);
+  }
+
+  @media (min-width: 640px) {
+    .btn-secondary {
+      padding: 1rem 2rem;
+    }
+  }
+
+  /* Responsive typography */
+  .heading-xl {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  @media (min-width: 475px) {
+    .heading-xl {
+      font-size: 1.875rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .heading-xl {
+      font-size: 2.25rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .heading-xl {
+      font-size: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .heading-xl {
+      font-size: 3.75rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .heading-xl {
+      font-size: 4.5rem;
+    }
+  }
+
+  .heading-lg {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  @media (min-width: 475px) {
+    .heading-lg {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .heading-lg {
+      font-size: 1.875rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .heading-lg {
+      font-size: 2.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .heading-lg {
+      font-size: 3rem;
+    }
+  }
+
+  /* Mobile-first hero typography */
+  .hero-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  @media (min-width: 475px) {
+    .hero-heading {
+      font-size: 1.875rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .hero-heading {
+      font-size: 2.25rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-heading {
+      font-size: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-heading {
+      font-size: 3.75rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero-heading {
+      font-size: 4.5rem;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .hero-heading {
+      font-size: 6rem;
+    }
+  }
+
+  .hero-subheading {
+    font-size: 0.875rem;
+    line-height: 1.625;
+  }
+
+  @media (min-width: 475px) {
+    .hero-subheading {
+      font-size: 1rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .hero-subheading {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-subheading {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-subheading {
+      font-size: 1.5rem;
+    }
+  }
+
+  /* Responsive grid systems */
+  .grid-responsive {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .grid-responsive {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid-responsive {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .grid-responsive {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .grid-features {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .grid-features {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid-features {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .grid-pricing {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .grid-pricing {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .grid-pricing {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* Touch-friendly interactive elements */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Responsive images */
+  .responsive-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Mobile navigation */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  /* Mobile-specific utilities */
+  .mobile-only {
+    display: block;
+  }
+
+  @media (min-width: 640px) {
+    .mobile-only {
+      display: none;
+    }
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .desktop-only {
+      display: block;
+    }
+  }
+
+  .tablet-up {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .tablet-up {
+      display: block;
+    }
+  }
+
+  .mobile-tablet {
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-tablet {
+      display: none;
+    }
+  }
+
+  /* Navbar specific styles */
+  .navbar-blur {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Custom scrollbar for mobile menu */
+  .mobile-menu-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .mobile-menu-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .mobile-menu-scroll::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.3);
+    border-radius: 2px;
+  }
+
+  .mobile-menu-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.5);
+  }
+
+  /* Dark mode scrollbar */
+  .dark .mobile-menu-scroll::-webkit-scrollbar-thumb {
+    background: rgba(75, 85, 99, 0.3);
+  }
+
+  .dark .mobile-menu-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(75, 85, 99, 0.5);
+  }
+}
+
+@layer utilities {
+  /* Infinite Scroll Animation for Integration Carousel */
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll-left {
+    animation: scroll-left 40s linear infinite;
+  }
+
+  .animate-scroll-left:hover {
+    animation-play-state: paused;
+  }
+
+  /* Gradient Animation for Text */
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient {
+    animation: gradient 3s ease infinite;
+  }
+
+  /* Float Animation for Background Elements */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Gentle Bounce for Decorative Elements */
+  @keyframes bounce-gentle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-bounce-gentle {
+    animation: bounce-gentle 3s ease-in-out infinite;
+  }
+
+  /* Exit Intent Modal - Dark Mode Benefit Cards */
+  .dark .bg-blue-50 {
+    background-color: rgba(30, 58, 138, 0.3) !important;
+  }
+
+  .dark .bg-green-50 {
+    background-color: rgba(20, 83, 45, 0.3) !important;
+  }
+
+  .dark .bg-purple-50 {
+    background-color: rgba(88, 28, 135, 0.3) !important;
+  }
+
+  .dark .bg-blue-100 {
+    background-color: rgba(37, 99, 235, 0.25) !important;
+  }
+
+  .dark .bg-green-100 {
+    background-color: rgba(34, 197, 94, 0.25) !important;
+  }
+
+  .dark .bg-purple-100 {
+    background-color: rgba(147, 51, 234, 0.25) !important;
+  }
+
+  .dark .border-blue-200 {
+    border-color: rgba(59, 130, 246, 0.4) !important;
+  }
+
+  .dark .border-green-200 {
+    border-color: rgba(34, 197, 94, 0.4) !important;
+  }
+
+  .dark .border-purple-200 {
+    border-color: rgba(168, 85, 247, 0.4) !important;
+  }
+}

@@ -1,0 +1,68 @@
+Project Name: Personal Portfolio Website
+
+Purpose:
+- A professional portfolio website to showcase all my projects, skills, and experience.
+- Acts as a digital CV + project archive.
+- Should highlight my best work and make it easy for clients/recruiters to contact me.
+
+Key Features:
+1. Home Page:
+   - Clean, modern design with hero section (photo/logo, name, tagline).
+   - Call-to-action button ("View My Work", "Contact Me").
+   - Smooth animations and responsive design.
+
+2. About Page:
+   - Short biography (background, skills, mission).
+   - List of technical skills (with icons or progress bars).
+   - Downloadable CV/Resume button.
+
+3. Projects Page:
+   - Grid/list of projects with cover image, title, summary, and stack.
+   - Filter/sort projects by category (e.g., Web, AI, Mobile).
+   - Each project links to a detail page.
+
+4. Project Detail Page:
+   - Title, date, stack, summary.
+   - Screenshots or demo video.
+   - Links to live demo and GitHub repo.
+   - Markdown/MDX content for problem, solution, and features.
+
+5. Contact Page:
+   - Contact form (name, email, message).
+   - Integrated with email service (e.g., Formspree, Resend, or Supabase).
+   - Social media icons (LinkedIn, GitHub, Twitter).
+
+6. Admin/Content Management (optional for later):
+   - Ability to add new projects via `.mdx` files in `/src/content/projects/`.
+   - Or integrate with a CMS (Sanity, Contentful, Supabase).
+
+7. Technical Stack:
+   - Next.js 14 (App Router).
+   - TypeScript.
+   - Tailwind CSS.
+   - ShadCN UI for professional components.
+   - MDX for project content.
+   - Deployment on Vercel.
+
+Design Guidelines:
+- Minimalist and professional aesthetic.
+- Light/dark mode support.
+- Mobile-first responsive design.
+- Smooth animations (Framer Motion).
+- SEO-friendly (meta tags, Open Graph).
+
+Examples (Inspiration):
+- https://brittanychiang.com/
+- https://leerob.io/
+- https://www.julienbrion.com/
+- https://www.alidib.me/
+- https://www.joshwcomeau.com/
+
+Deployment:
+- Hosted on Vercel, connected with GitHub repo.
+- Automatic deploys on push.
+
+Future Enhancements:
+- Blog section (MDX-based).
+- Admin dashboard for non-technical updates.
+- Analytics integration (Vercel Analytics, Google Analytics).
