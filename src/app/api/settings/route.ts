@@ -46,27 +46,30 @@ export async function GET() {
     
     if (!settings) {
       // Create default settings if none exist
-      settings = await Settings.create(defaultSettings)
-      settings = settings.toObject()
+      const newSettings = await Settings.create(defaultSettings)
+      settings = newSettings.toObject()
     }
+
+    // Type assertion since we know settings exists at this point
+    const data = settings as NonNullable<typeof settings>
 
     return NextResponse.json({ 
       success: true, 
       data: {
-        id: settings._id.toString(),
-        siteName: settings.siteName,
-        ownerName: settings.ownerName,
-        title: settings.title,
-        bio: settings.bio,
-        location: settings.location,
-        email: settings.email,
-        phone: settings.phone,
-        availability: settings.availability,
-        profileImage: settings.profileImage,
-        resumeUrl: settings.resumeUrl,
-        socialLinks: settings.socialLinks,
-        skills: settings.skills,
-        technologies: settings.technologies,
+        id: data._id.toString(),
+        siteName: data.siteName,
+        ownerName: data.ownerName,
+        title: data.title,
+        bio: data.bio,
+        location: data.location,
+        email: data.email,
+        phone: data.phone,
+        availability: data.availability,
+        profileImage: data.profileImage,
+        resumeUrl: data.resumeUrl,
+        socialLinks: data.socialLinks,
+        skills: data.skills,
+        technologies: data.technologies,
       }
     })
   } catch (error) {
