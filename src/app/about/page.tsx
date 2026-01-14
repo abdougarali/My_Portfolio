@@ -127,10 +127,7 @@ export default function AboutPage() {
                   {settings?.resumeUrl && (
                     <Button className="mt-6 w-full" asChild>
                       <a 
-                        href={settings.resumeUrl} 
-                        download={`${settings.ownerName.replace(/\s+/g, '_')}_Resume.pdf`}
-                        target="_blank" 
-                        rel="noopener noreferrer"
+                        href={`/api/download-resume?url=${encodeURIComponent(settings.resumeUrl)}&filename=${encodeURIComponent(settings.ownerName.replace(/\s+/g, '_'))}_Resume.pdf`}
                       >
                         <Download className="mr-2 h-4 w-4" />
                         Download CV

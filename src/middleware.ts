@@ -16,6 +16,7 @@ export default withAuth(
           pathname.startsWith('/api/auth') ||
           (pathname.startsWith('/api/projects') && req.method === 'GET') ||
           pathname === '/api/contact' ||
+          pathname === '/api/download-resume' ||
           (pathname === '/api/settings' && req.method === 'GET')
         ) {
           return true;
