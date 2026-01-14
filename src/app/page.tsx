@@ -37,7 +37,7 @@ export default function HomePage() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Hi, I'm{" "}
+              Hi, I&apos;m{" "}
               <span className="gradient-text">Garali Abdesslem</span>
             </h1>
             <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground max-w-2xl mx-auto px-4 sm:px-0">
@@ -114,10 +114,10 @@ export default function HomePage() {
           className="mx-auto max-w-2xl text-center"
         >
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight md:text-4xl px-4 sm:px-0">
-            Let's Build Something Amazing Together
+            Let&apos;s Build Something Amazing Together
           </h2>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground px-4 sm:px-0">
-            Ready to bring your ideas to life? I'd love to hear about your project 
+            Ready to bring your ideas to life? I&apos;d love to hear about your project 
             and discuss how we can work together.
           </p>
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-x-6 px-4 sm:px-0">

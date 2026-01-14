@@ -80,7 +80,7 @@ export default function ProjectsPage() {
                            project.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
       return matchesCategory && matchesSearch
     })
-  }, [selectedCategory, searchTerm])
+  }, [projects, selectedCategory, searchTerm])
 
   if (loading) {
     return (

@@ -101,7 +101,7 @@ export function Navigation() {
             {/* CTA Button - Desktop */}
             <Button asChild className="hidden lg:flex gap-2 shadow-lg text-sm lg:text-base font-semibold px-4 lg:px-6" size="default">
               <Link href="/contact">
-                Let's Talk
+                Let&apos;s Talk
                 <ArrowRight className="h-4 w-4 lg:h-5 lg:w-5" />
               </Link>
             </Button>
@@ -175,7 +175,7 @@ export function Navigation() {
           >
             <Button asChild className="w-full gap-2" size="lg">
               <Link href="/contact" onClick={() => setIsOpen(false)}>
-                Let's Talk
+                Let&apos;s Talk
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

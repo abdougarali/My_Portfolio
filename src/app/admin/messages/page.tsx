@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useSession } from "next-auth/react"
 import { motion } from "framer-motion"
 import { 
@@ -39,11 +39,7 @@ export default function MessagesPage() {
   const [filter, setFilter] = useState<'all' | 'unread' | 'read'>('all')
   const [searchTerm, setSearchTerm] = useState('')
 
-  useEffect(() => {
-    loadMessages()
-  }, [filter])
-
-  const loadMessages = async () => {
+  const loadMessages = useCallback(async () => {
     setIsLoading(true)
     try {
       let url = '/api/admin/messages'
@@ -61,7 +57,11 @@ export default function MessagesPage() {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [filter])
+
+  useEffect(() => {
+    loadMessages()
+  }, [loadMessages])
 
   const handleMarkAsRead = async (id: string, read: boolean) => {
     try {

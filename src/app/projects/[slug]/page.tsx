@@ -91,7 +91,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
             <h1 className="text-5xl sm:text-6xl font-bold text-primary mb-4">404</h1>
             <h2 className="text-xl sm:text-2xl font-semibold mb-4">Project Not Found</h2>
             <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
-              The project you're looking for doesn't exist or has been removed.
+              The project you&apos;re looking for doesn&apos;t exist or has been removed.
             </p>
             <Button asChild>
               <Link href="/projects">

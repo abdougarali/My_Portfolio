@@ -149,19 +149,19 @@ export default function AboutPage() {
                 ) : (
                   <>
                     <p>
-                      I'm a passionate full-stack developer with over 5 years of experience 
+                      I&apos;m a passionate full-stack developer with over 5 years of experience 
                       building modern web applications. My journey began with a curiosity 
                       about how websites work, and it has evolved into a deep love for 
                       creating digital experiences that make a real impact.
                     </p>
                     <p>
-                      I specialize in React, Next.js, and Node.js, but I'm always eager 
+                      I specialize in React, Next.js, and Node.js, but I&apos;m always eager 
                       to learn new technologies and frameworks. I believe in writing clean, 
                       maintainable code and following best practices to deliver high-quality 
                       solutions.
                     </p>
                     <p>
-                      When I'm not coding, you can find me exploring new technologies, 
+                      When I&apos;m not coding, you can find me exploring new technologies, 
                       contributing to open-source projects, or sharing knowledge with 
                       the developer community.
                     </p>

@@ -120,8 +120,8 @@ export default function ContactPage() {
           Get In Touch
         </h1>
         <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
-          Have a project in mind or just want to chat? I'd love to hear from you. 
-          Send me a message and I'll respond as soon as possible.
+          Have a project in mind or just want to chat? I&apos;d love to hear from you. 
+          Send me a message and I&apos;ll respond as soon as possible.
         </p>
       </motion.div>
 
@@ -137,7 +137,7 @@ export default function ContactPage() {
             <CardHeader>
               <CardTitle>Send me a message</CardTitle>
               <CardDescription>
-                Fill out the form below and I'll get back to you within 24 hours.
+                Fill out the form below and I&apos;ll get back to you within 24 hours.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -237,7 +237,7 @@ export default function ContactPage() {
                         Message sent successfully!
                       </p>
                       <p className="text-green-700 dark:text-green-300 text-sm mt-1">
-                        Thank you for reaching out. I'll get back to you as soon as possible.
+                        Thank you for reaching out. I&apos;ll get back to you as soon as possible.
                       </p>
                     </div>
                   </motion.div>
@@ -350,7 +350,7 @@ export default function ContactPage() {
             <CardHeader>
               <CardTitle>Availability</CardTitle>
               <CardDescription>
-                When I'm available for new projects
+                When I&apos;m available for new projects
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -360,8 +360,8 @@ export default function ContactPage() {
                   <span className="text-sm font-medium">Available for new projects</span>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  I'm currently accepting new projects and collaborations. 
-                  Let's discuss how we can work together!
+                  I&apos;m currently accepting new projects and collaborations. 
+                  Let&apos;s discuss how we can work together!
                 </p>
               </div>
             </CardContent>
