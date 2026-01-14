@@ -87,10 +87,13 @@ export default function SettingsPage() {
       const result = await response.json()
       
       if (result.success) {
+        // Reload settings from server to ensure we have the latest data
+        await loadSettings()
         setSaveStatus('success')
         setTimeout(() => setSaveStatus('idle'), 3000)
       } else {
         setSaveStatus('error')
+        console.error('Error saving settings:', result.error)
       }
     } catch (error) {
       console.error('Error saving settings:', error)
@@ -158,6 +161,8 @@ export default function SettingsPage() {
     formData.append('file', file)
     formData.append('type', 'profile')
 
+    setIsSaving(true)
+
     try {
       const response = await fetch('/api/upload', {
         method: 'POST',
@@ -167,10 +172,29 @@ export default function SettingsPage() {
       const result = await response.json()
       
       if (result.success) {
-        setSettings({ ...settings, profileImage: result.url })
+        // Update settings with new image URL
+        const updatedSettings = { ...settings, profileImage: result.url }
+        
+        // Save to database immediately
+        const saveResponse = await fetch('/api/settings', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedSettings),
+        })
+        
+        const saveResult = await saveResponse.json()
+        
+        if (saveResult.success) {
+          setSettings(updatedSettings)
+          setSaveStatus('success')
+          setTimeout(() => setSaveStatus('idle'), 3000)
+        }
       }
     } catch (error) {
       console.error('Error uploading image:', error)
+      setSaveStatus('error')
+    } finally {
+      setIsSaving(false)
     }
   }
 

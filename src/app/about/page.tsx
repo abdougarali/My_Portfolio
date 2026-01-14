@@ -11,16 +11,21 @@ import { Badge } from "@/components/ui/badge"
 
 interface Settings {
   siteName: string
-  siteDescription: string
   ownerName: string
-  ownerTitle: string
-  ownerBio: string
-  ownerLocation: string
+  title: string
+  bio: string
+  location: string
   profileImage: string
   email: string
-  github: string
-  linkedin: string
-  twitter: string
+  phone: string
+  availability: boolean
+  socialLinks: {
+    github: string
+    linkedin: string
+    twitter: string
+  }
+  skills: Array<{ name: string; level: number }>
+  technologies: string[]
 }
 
 const skills = [
@@ -105,12 +110,12 @@ export default function AboutPage() {
                     </div>
                   )}
                   <h3 className="text-xl sm:text-2xl font-bold mb-2">{settings?.ownerName || "Garali Abdesslem"}</h3>
-                  <p className="text-sm sm:text-base text-muted-foreground mb-4">{settings?.ownerTitle || "Full Stack Developer"}</p>
+                  <p className="text-sm sm:text-base text-muted-foreground mb-4">{settings?.title || "Full Stack Developer"}</p>
                   
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex items-center justify-center gap-2">
                       <MapPin className="h-4 w-4" />
-                      <span>{settings?.ownerLocation || "Tunisia"}</span>
+                      <span>{settings?.location || "Tunisia"}</span>
                     </div>
                     <div className="flex items-center justify-center gap-2">
                       <Calendar className="h-4 w-4" />
@@ -142,8 +147,8 @@ export default function AboutPage() {
                 <CardTitle className="text-lg sm:text-xl">My Story</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 sm:space-y-4 text-sm sm:text-base">
-                {settings?.ownerBio ? (
-                  settings.ownerBio.split('\n').map((paragraph, index) => (
+                {settings?.bio ? (
+                  settings.bio.split('\n').map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>
                   ))
                 ) : (
@@ -180,7 +185,7 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 sm:space-y-4">
-                  {skills.map((skill, index) => (
+                  {(settings?.skills || skills).map((skill, index) => (
                     <motion.div
                       key={skill.name}
                       initial={{ opacity: 0, x: -20 }}
@@ -215,7 +220,7 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {technologies.map((tech, index) => (
+                  {(settings?.technologies || technologies).map((tech, index) => (
                     <motion.div
                       key={tech}
                       initial={{ opacity: 0, scale: 0.8 }}
