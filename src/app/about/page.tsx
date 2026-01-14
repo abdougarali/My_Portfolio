@@ -19,6 +19,7 @@ interface Settings {
   email: string
   phone: string
   availability: boolean
+  resumeUrl?: string
   socialLinks: {
     github: string
     linkedin: string
@@ -123,12 +124,14 @@ export default function AboutPage() {
                     </div>
                   </div>
 
-                  <Button className="mt-6 w-full" asChild>
-                    <a href="/resume.pdf" download>
-                      <Download className="mr-2 h-4 w-4" />
-                      Download CV
-                    </a>
-                  </Button>
+                  {settings?.resumeUrl && (
+                    <Button className="mt-6 w-full" asChild>
+                      <a href={settings.resumeUrl} download target="_blank" rel="noopener noreferrer">
+                        <Download className="mr-2 h-4 w-4" />
+                        Download CV
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>

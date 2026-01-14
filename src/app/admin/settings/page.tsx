@@ -392,6 +392,19 @@ export default function SettingsPage() {
                   </label>
                 </div>
               </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">Resume/CV URL</label>
+                <Input
+                  name="resumeUrl"
+                  value={settings.resumeUrl}
+                  onChange={handleInputChange}
+                  placeholder="https://drive.google.com/your-resume.pdf or /resume.pdf"
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Upload your resume to Google Drive, Dropbox, or place it in the public folder and enter the URL here
+                </p>
+              </div>
             </CardContent>
           </Card>
 
