@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Send, Mail, MapPin, Phone, Github, Linkedin, Twitter, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
 
@@ -9,49 +9,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
-const contactInfo = [
-  {
-    icon: Mail,
-    title: "Email",
-    description: "garali.abdesslem@example.com",
-    href: "mailto:garali.abdesslem@example.com",
-  },
-  {
-    icon: MapPin,
-    title: "Location",
-    description: "Tunisia",
-    href: "#",
-  },
-  {
-    icon: Phone,
-    title: "Phone",
-    description: "+216 XX XXX XXX",
-    href: "tel:+216XXXXXXXX",
-  },
-]
-
-const socialLinks = [
-  {
-    icon: Github,
-    name: "GitHub",
-    href: "https://github.com/garaliabdesslem",
-    description: "Check out my code and projects",
-  },
-  {
-    icon: Linkedin,
-    name: "LinkedIn",
-    href: "https://linkedin.com/in/garaliabdesslem",
-    description: "Connect with me professionally",
-  },
-  {
-    icon: Twitter,
-    name: "Twitter",
-    href: "https://twitter.com/garaliabdesslem",
-    description: "Follow me for updates",
-  },
-]
+interface Settings {
+  email: string
+  phone: string
+  location: string
+  availability: boolean
+  socialLinks: {
+    github: string
+    linkedin: string
+    twitter: string
+  }
+}
 
 export default function ContactPage() {
+  const [settings, setSettings] = useState<Settings | null>(null)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -61,6 +32,21 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const response = await fetch('/api/settings')
+        const result = await response.json()
+        if (result.success) {
+          setSettings(result.data)
+        }
+      } catch (error) {
+        console.error('Failed to fetch settings:', error)
+      }
+    }
+    fetchSettings()
+  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -281,28 +267,68 @@ export default function ContactPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {contactInfo.map((info, index) => (
+              {settings?.email && (
                 <motion.div
-                  key={info.title}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                  transition={{ duration: 0.3, delay: 0.3 }}
                   className="flex items-center space-x-3"
                 >
                   <div className="flex-shrink-0">
-                    <info.icon className="h-5 w-5 text-primary" />
+                    <Mail className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium">{info.title}</p>
+                    <p className="text-sm font-medium">Email</p>
                     <a
-                      href={info.href}
+                      href={`mailto:${settings.email}`}
                       className="text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
-                      {info.description}
+                      {settings.email}
                     </a>
                   </div>
                 </motion.div>
-              ))}
+              )}
+              
+              {settings?.location && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.4 }}
+                  className="flex items-center space-x-3"
+                >
+                  <div className="flex-shrink-0">
+                    <MapPin className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">Location</p>
+                    <p className="text-sm text-muted-foreground">
+                      {settings.location}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+              
+              {settings?.phone && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.5 }}
+                  className="flex items-center space-x-3"
+                >
+                  <div className="flex-shrink-0">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">Phone</p>
+                    <a
+                      href={`tel:${settings.phone}`}
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {settings.phone}
+                    </a>
+                  </div>
+                </motion.div>
+              )}
             </CardContent>
           </Card>
 
@@ -315,33 +341,86 @@ export default function ContactPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {socialLinks.map((social, index) => (
+              {settings?.socialLinks?.github && (
                 <motion.div
-                  key={social.name}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+                  transition={{ duration: 0.3, delay: 0.4 }}
                 >
                   <a
-                    href={social.href}
+                    href={settings.socialLinks.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-3 p-3 rounded-lg hover:bg-accent transition-colors group"
                   >
                     <div className="flex-shrink-0">
-                      <social.icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                      <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
                     <div>
                       <p className="text-sm font-medium group-hover:text-primary transition-colors">
-                        {social.name}
+                        GitHub
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {social.description}
+                        Check out my code and projects
                       </p>
                     </div>
                   </a>
                 </motion.div>
-              ))}
+              )}
+              
+              {settings?.socialLinks?.linkedin && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.5 }}
+                >
+                  <a
+                    href={settings.socialLinks.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 rounded-lg hover:bg-accent transition-colors group"
+                  >
+                    <div className="flex-shrink-0">
+                      <Linkedin className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium group-hover:text-primary transition-colors">
+                        LinkedIn
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        Connect with me professionally
+                      </p>
+                    </div>
+                  </a>
+                </motion.div>
+              )}
+              
+              {settings?.socialLinks?.twitter && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.6 }}
+                >
+                  <a
+                    href={settings.socialLinks.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 rounded-lg hover:bg-accent transition-colors group"
+                  >
+                    <div className="flex-shrink-0">
+                      <Twitter className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium group-hover:text-primary transition-colors">
+                        Twitter
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        Follow me for updates
+                      </p>
+                    </div>
+                  </a>
+                </motion.div>
+              )}
             </CardContent>
           </Card>
 
@@ -356,12 +435,15 @@ export default function ContactPage() {
             <CardContent>
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium">Available for new projects</span>
+                  <div className={`w-2 h-2 rounded-full ${settings?.availability ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`}></div>
+                  <span className="text-sm font-medium">
+                    {settings?.availability ? 'Available for new projects' : 'Not available at the moment'}
+                  </span>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  I&apos;m currently accepting new projects and collaborations. 
-                  Let&apos;s discuss how we can work together!
+                  {settings?.availability 
+                    ? "I'm currently accepting new projects and collaborations. Let's discuss how we can work together!"
+                    : "I'm currently focused on existing projects. Feel free to reach out for future opportunities!"}
                 </p>
               </div>
             </CardContent>
