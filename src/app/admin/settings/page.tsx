@@ -52,6 +52,8 @@ export default function SettingsPage() {
   const [newSkill, setNewSkill] = useState({ name: '', level: 50 })
   const [newTech, setNewTech] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const resumeInputRef = useRef<HTMLInputElement>(null)
+  const [isUploadingResume, setIsUploadingResume] = useState(false)
 
   useEffect(() => {
     loadSettings()
@@ -219,6 +221,74 @@ export default function SettingsPage() {
       setErrorMessage('Failed to upload image')
     } finally {
       setIsSaving(false)
+    }
+  }
+
+  const handleResumeUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file || !settings) return
+
+    // Check if file is PDF
+    if (file.type !== 'application/pdf') {
+      setSaveStatus('error')
+      setErrorMessage('Please upload a PDF file')
+      return
+    }
+
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('type', 'resume')
+
+    setIsUploadingResume(true)
+    setSaveStatus('idle')
+    setErrorMessage('')
+
+    try {
+      console.log('Uploading resume...')
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      })
+      
+      const result = await response.json()
+      
+      console.log('Upload response:', result)
+      
+      if (result.success) {
+        // Update settings with new resume URL
+        const updatedSettings = { ...settings, resumeUrl: result.url }
+        
+        console.log('Saving updated settings with new resume...')
+        
+        // Save to database immediately
+        const saveResponse = await fetch('/api/settings', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedSettings),
+        })
+        
+        const saveResult = await saveResponse.json()
+        
+        console.log('Save result:', saveResult)
+        
+        if (saveResult.success) {
+          await loadSettings()
+          setSaveStatus('success')
+          setTimeout(() => setSaveStatus('idle'), 3000)
+        } else {
+          setSaveStatus('error')
+          setErrorMessage(saveResult.error || 'Failed to save resume')
+        }
+      } else {
+        setSaveStatus('error')
+        setErrorMessage(result.error || 'Failed to upload resume')
+      }
+    } catch (error) {
+      console.error('Error uploading resume:', error)
+      setSaveStatus('error')
+      setErrorMessage('Failed to upload resume')
+    } finally {
+      setIsUploadingResume(false)
     }
   }
 
@@ -394,15 +464,56 @@ export default function SettingsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Resume/CV URL</label>
-                <Input
-                  name="resumeUrl"
-                  value={settings.resumeUrl}
-                  onChange={handleInputChange}
-                  placeholder="https://drive.google.com/your-resume.pdf or /resume.pdf"
-                />
+                <label className="block text-sm font-medium mb-2">Resume/CV</label>
+                <div className="flex gap-2">
+                  <Input
+                    name="resumeUrl"
+                    value={settings.resumeUrl}
+                    onChange={handleInputChange}
+                    placeholder="Or paste a URL manually"
+                    className="flex-1"
+                  />
+                  <input
+                    ref={resumeInputRef}
+                    type="file"
+                    accept="application/pdf"
+                    onChange={handleResumeUpload}
+                    className="hidden"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => resumeInputRef.current?.click()}
+                    disabled={isUploadingResume}
+                  >
+                    {isUploadingResume ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Uploading...
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="h-4 w-4 mr-2" />
+                        Upload PDF
+                      </>
+                    )}
+                  </Button>
+                </div>
+                {settings.resumeUrl && (
+                  <div className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
+                    <span>✓ Resume uploaded:</span>
+                    <a 
+                      href={settings.resumeUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline truncate max-w-xs"
+                    >
+                      {settings.resumeUrl}
+                    </a>
+                  </div>
+                )}
                 <p className="text-xs text-muted-foreground mt-1">
-                  Upload your resume to Google Drive, Dropbox, or place it in the public folder and enter the URL here
+                  Upload a PDF file (recommended) or paste a public URL
                 </p>
               </div>
             </CardContent>

@@ -24,11 +24,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate file type based on upload type
-    if (type === 'document') {
-      // Allow PDF for documents
+    if (type === 'document' || type === 'resume') {
+      // Allow PDF for documents and resumes
       if (!file.type.includes('pdf')) {
         return NextResponse.json(
-          { success: false, error: 'Only PDF files are allowed for documents' },
+          { success: false, error: 'Only PDF files are allowed' },
           { status: 400 }
         )
       }
@@ -70,6 +70,7 @@ export async function POST(request: NextRequest) {
         result = await uploadProfileImage(buffer)
         break
       case 'document':
+      case 'resume':
         result = await uploadDocument(buffer, file.name)
         break
       default:
@@ -148,7 +149,7 @@ async function handleLocalUpload(file: File, type: string) {
   // Determine upload directory
   let subdir = 'projects'
   if (type === 'profile') subdir = 'profile'
-  if (type === 'document') subdir = 'documents'
+  if (type === 'document' || type === 'resume') subdir = 'documents'
 
   const uploadsDir = join(process.cwd(), 'public', 'images', subdir)
   await mkdir(uploadsDir, { recursive: true })
