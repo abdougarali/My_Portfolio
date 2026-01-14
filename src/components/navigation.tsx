@@ -17,10 +17,32 @@ const navigation = [
   { name: "Contact", href: "/contact" },
 ]
 
+interface Settings {
+  ownerName: string
+  title: string
+}
+
 export function Navigation() {
   const [isOpen, setIsOpen] = React.useState(false)
   const [scrolled, setScrolled] = React.useState(false)
+  const [settings, setSettings] = React.useState<Settings | null>(null)
   const pathname = usePathname()
+
+  // Fetch settings
+  React.useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const response = await fetch('/api/settings')
+        const result = await response.json()
+        if (result.success) {
+          setSettings(result.data)
+        }
+      } catch (error) {
+        console.error('Failed to fetch settings:', error)
+      }
+    }
+    fetchSettings()
+  }, [])
 
   // Handle scroll effect
   React.useEffect(() => {
@@ -56,10 +78,18 @@ export function Navigation() {
             </motion.div>
             <div className="flex flex-col">
               <span className="text-base sm:text-lg lg:text-xl font-bold tracking-tight">
-                Garali <span className="text-primary">Abdesslem</span>
+                {settings?.ownerName ? (
+                  <>
+                    {settings.ownerName.split(' ')[0]} <span className="text-primary">{settings.ownerName.split(' ').slice(1).join(' ')}</span>
+                  </>
+                ) : (
+                  <>
+                    Garali <span className="text-primary">Abdesslem</span>
+                  </>
+                )}
               </span>
               <span className="text-xs sm:text-sm text-muted-foreground hidden sm:block">
-                Full Stack Developer
+                {settings?.title || 'Full Stack Developer'}
               </span>
             </div>
           </Link>
